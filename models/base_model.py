@@ -13,8 +13,4 @@ class BaseModel:
     id = ""
 
     def __init__(self):
-        self.id = uuid.uuid4().bytes
-
-
-if __name__ == "__main__":
-    return
+        self.id = uuid.uuid4().urn
