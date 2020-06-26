@@ -13,4 +13,4 @@ class BaseModel:
     id = ""
 
     def __init__(self):
-        self.id = uuid.uuid4().urn
+        self.id = str(uuid.uuid4())
