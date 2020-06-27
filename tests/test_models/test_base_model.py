@@ -3,6 +3,7 @@
 """
 import unittest
 import pep8
+from datetime import datetime
 from models.base_model import BaseModel
 
 class TestBaseModel(unittest.TestCase):
@@ -21,8 +22,13 @@ class TestBaseModel(unittest.TestCase):
         """ Verify that id is a string
         """
         testinstance = BaseModel()
-        print(testinstance.id)
+        print("BaseModel id: {}".format(testinstance.id))
         self.assertIsInstance(testinstance.id, str, "id is not a string")
+
+    def test_created_at(self):
+        testinstance = BaseModel()
+        self.assertIsInstance(testinstance.created_at, datetime,
+                              "create_at is not instance of datetime.datetime")
 
 if __name__ == "__main__":
     unittest.main()
