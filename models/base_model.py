@@ -10,10 +10,20 @@ from datetime import datetime
 class BaseModel:
     """
     """
-    def __init__(self):
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = self.created_at
+    def __init__(self, *args, **kwargs):
+        if len(kwargs) == 0:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = self.created_at
+        else:
+            for pair in kwargs.items():
+                if pair[0] == 'created_at' or pair[0] == 'updated_at':
+                    date = datetime.strptime(pair[1],'%Y-%m-%dT%H:%M:%S.%f')
+                    setattr(self, pair[0], date)
+                elif pair[0] == '__class__':
+                    pass
+                else:
+                    setattr(self, pair[0], pair[1])
 
     def save(self):
         self.updated_at = datetime.now()
