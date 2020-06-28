@@ -30,5 +30,11 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsInstance(testinstance.created_at, datetime,
                               "create_at is not instance of datetime.datetime")
 
+    def test_str(self):
+        testinstance = BaseModel()
+        testinstance.name = "Holberton"
+        testinstance.my_number = 89
+        print(testinstance)
+
 if __name__ == "__main__":
     unittest.main()
