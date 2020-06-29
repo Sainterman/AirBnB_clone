@@ -1,8 +1,11 @@
 #!/usr/bin/python3
 """
+
 """
 import json
 import models
+from models.base_model import BaseModel
+import importlib
 from os import path
 
 
@@ -11,9 +14,9 @@ class FileStorage:
     """
     __file_path = "file.json"
     __objects = {}
-    def __init__():
+    def __init__(self):
         pass
-    
+
     def all(self):
         """ Returns the dictionary with objects
         """
@@ -23,17 +26,18 @@ class FileStorage:
         """ Return __objects with obj set as key
         """
         key = "{}.{}".format(obj.__class__.__name__, obj.id)
-        self.__objects[key] = obj
+        FileStorage.__objects[key] = obj
 
     def save(self):
         """ Serializes __objects to the JSON file (path: __file_path)
         """
-        save_file = json.__file_path
+        save_file = self.__file_path
         new_dict = {}
-        for item in self.__objects.items():
-            new_dict[item] = item.to_dict()
-        with open("save_file", mode="w", encoding="utf-8") as new_file:
-            json.dump(new_dict, new_file)
+        for item in FileStorage.__objects.items():
+            new_dict[item[0]] = item[1].to_dict()
+
+        with open(FileStorage.__file_path, mode="w", encoding="utf-8") as nf:
+            json.dump(new_dict, nf)
 
     def reload(self):
         """ Deserializes the JSON file to __objects
@@ -42,4 +46,10 @@ class FileStorage:
             no exception should be raised)
         """
         Reload_dict = {}
-
+        try:
+            with open(FileStorage.__file_path, mode='r', encoding='utf-8') as fo:
+                Reload_dict=json.load(fo)
+                for key, value in Reload_dict.items():
+                    self.__objects[key] = eval(value['__class__'])(**value)
+        except:
+            pass

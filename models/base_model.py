@@ -4,6 +4,7 @@
     for other classes:
 """
 import uuid
+import models
 from datetime import datetime
 
 
@@ -11,10 +12,11 @@ class BaseModel:
     """
     """
     def __init__(self, *args, **kwargs):
-        if len(kwargs) == 0:
+        if len(kwargs) == 0 or kwargs is None:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = self.created_at
+            models.storage.new(self)
         else:
             for pair in kwargs.items():
                 if pair[0] == 'created_at' or pair[0] == 'updated_at':
@@ -27,6 +29,7 @@ class BaseModel:
 
     def save(self):
         self.updated_at = datetime.now()
+        models.storage.save()
 
     def __str__(self):
         a, b, c = self.__class__.__name__, self.id, self.__dict__
