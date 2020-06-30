@@ -11,8 +11,10 @@ from datetime import datetime
 
 class BaseModel:
     """
+    BaseModel class instantiates andserialez deserializes
     """
     def __init__(self, *args, **kwargs):
+        """ instance with existing dictionary or new object"""
         if not kwargs:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
@@ -21,7 +23,7 @@ class BaseModel:
         else:
             for pair in kwargs.items():
                 if pair[0] == 'created_at' or pair[0] == 'updated_at':
-                    date = datetime.strptime(pair[1],'%Y-%m-%dT%H:%M:%S.%f')
+                    date = datetime.strptime(pair[1], '%Y-%m-%dT%H:%M:%S.%f')
                     setattr(self, pair[0], date)
                 elif pair[0] == '__class__':
                     pass

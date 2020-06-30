@@ -1,19 +1,22 @@
 #!/usr/bin/python3
-
+"""
+Modules handles custom CLI connected to file storage
+"""
 import cmd
 import sys
 import models
 from models.base_model import BaseModel
 
+
 class HBNBCommand(cmd.Cmd):
     """
-
+    Creates custom cmd
     """
     clases = ["BaseModel"]
 
     def __init__(self):
         cmd.Cmd.__init__(self)
-        self.prompt = '(hbnb) '
+        self.prompt = '(hbnb)'
 
     def do_help(self, arg):
         """
@@ -29,13 +32,13 @@ class HBNBCommand(cmd.Cmd):
         """
         Exit CLI
         """
-        sys.exit(1)
+        return True
 
     def do_EOF(self, arg):
         """
         handle EOF
         """
-        sys.exit(1)
+        return True
 
     def help_EOF(self):
         print("Hit Ctrl-D to exit, means EOF")

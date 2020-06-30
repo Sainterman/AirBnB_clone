@@ -19,7 +19,6 @@ class TestFileStorage(unittest.TestCase):
         """reset instances, clean file.json maybe"""
         pass
 
-
     def test_pep8_style(self):
         """ Check pep8 style"""
         basePep8Style = pep8.StyleGuid(quiet=True)

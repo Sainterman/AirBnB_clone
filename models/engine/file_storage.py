@@ -14,7 +14,9 @@ class FileStorage:
     """
     __file_path = "file.json"
     __objects = {}
+
     def __init__(self):
+        """nothing lmao"""
         pass
 
     def all(self):
@@ -45,11 +47,11 @@ class FileStorage:
             otherwise, do nothing. If the file doesn’t exist,
             no exception should be raised)
         """
-        Reload_dict = {}
+        Reload = {}
         try:
-            with open(FileStorage.__file_path, mode='r', encoding='utf-8') as fo:
-                Reload_dict=json.load(fo)
-                for key, value in Reload_dict.items():
+            with open(FileStorage.__file_path, mode='r') as f:
+                Reload = json.load(f)
+                for key, value in Reload.items():
                     self.__objects[key] = eval(value['__class__'])(**value)
         except:
             pass
