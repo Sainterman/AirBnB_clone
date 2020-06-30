@@ -21,12 +21,8 @@ class HBNBCommand(cmd.Cmd):
     def do_help(self, arg):
         """
         default help
-
         """
-        if arg == 'quit':
-            print("quit command to exit the program")
-        else:
-            cmd.Cmd.do_help(self, arg)
+        cmd.Cmd.do_help(self, arg)
 
     def do_quit(self, arg):
         """
@@ -45,6 +41,9 @@ class HBNBCommand(cmd.Cmd):
 
     def help_help(self):
         print("type help <command>")
+
+    def help_quit(self):
+        print("quit command to exit the program")
 
     def do_create(self, line):
         """

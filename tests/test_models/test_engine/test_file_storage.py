@@ -21,7 +21,7 @@ class TestFileStorage(unittest.TestCase):
 
     def test_pep8_style(self):
         """ Check pep8 style"""
-        basePep8Style = pep8.StyleGuid(quiet=True)
+        basePep8Style = pep8.StyleGuide(quiet=True)
         result = basePep8Style.check_files(["models/engine/file_storage.py"])
         self.assertEqual(result.total_errors, 0, "base file has pep8 errors")
 

@@ -23,7 +23,6 @@ class TestBaseModel(unittest.TestCase):
         """ Verify that id is a string
         """
         testinstance = BaseModel()
-        print("BaseModel id: {}".format(testinstance.id))
         self.assertIsInstance(testinstance.id, str, "id is not a string")
 
     def test_created_at(self):
@@ -35,7 +34,6 @@ class TestBaseModel(unittest.TestCase):
         testinstance = BaseModel()
         testinstance.name = "Holberton"
         testinstance.my_number = 89
-        print(testinstance)
 
 if __name__ == "__main__":
     unittest.main()
