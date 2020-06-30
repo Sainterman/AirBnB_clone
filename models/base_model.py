@@ -31,10 +31,16 @@ class BaseModel:
                     setattr(self, pair[0], pair[1])
 
     def save(self):
+        """
+        store into a filestorage object the current instances
+        """
         self.updated_at = datetime.now()
         models.storage.save()
 
     def __str__(self):
+        """Returns string representation as:
+        [<class name>] (<self.id>) <self.__dict__>
+        """
         a, b, c = self.__class__.__name__, self.id, self.__dict__
         return "[{}] ({}) {}".format(a, b, c)
 
