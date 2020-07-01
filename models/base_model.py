@@ -5,7 +5,6 @@
     for other classes:
 """
 
-
 import uuid
 import models
 from datetime import datetime

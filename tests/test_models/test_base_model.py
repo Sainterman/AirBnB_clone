@@ -2,11 +2,11 @@
 """ Test for class BaseModel
 """
 
-
 import unittest
 import pep8
 from datetime import datetime
 from models.base_model import BaseModel
+import models
 
 
 class TestBaseModel(unittest.TestCase):
@@ -36,6 +36,14 @@ class TestBaseModel(unittest.TestCase):
         testinstance = BaseModel()
         testinstance.name = "Holberton"
         testinstance.my_number = 89
+
+    def test_docstring(self):
+        """test docstring in the file"""
+        self.assertIsNotNone(BaseModel.__doc__)
+        self.assertIsNotNone(BaseModel.__init__.__doc__)
+        self.assertIsNotNone(BaseModel.__str__.__doc__)
+        self.assertIsNotNone(BaseModel.save.__doc__)
+        self.assertIsNotNone(BaseModel.to_dict.__doc__)
 
 if __name__ == "__main__":
     unittest.main()
