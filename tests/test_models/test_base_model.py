@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-""" Test for class BaseModel
+"""
+Test for class BaseModel
 """
 
 import unittest
@@ -13,6 +14,9 @@ class TestBaseModel(unittest.TestCase):
     """ Test case for BaseModel, include
         style and id.
     """
+    def setUp(self):
+        """ nothing now"""
+        pass
 
     def test_pep8style(self):
         """ verify style pep8
@@ -69,6 +73,13 @@ class TestBaseModel(unittest.TestCase):
         c = testinstance.__dict__
         self.assertEqual("[{}] ({}) {}".format(a, b, c),
                          testinstance.__str__())
+
+    def test_instance(self):
+       """
+       test imports in base model class
+       """
+       testinstance = BaseModel()
+       self.assertIsInstance(testinstance, BaseModel)
 
 
 if __name__ == "__main__":
