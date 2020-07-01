@@ -55,3 +55,7 @@ class FileStorage:
                     self.__objects[key] = eval(value['__class__'])(**value)
         except:
             pass
+
+
+if __name__ == "__main__":
+    pass
