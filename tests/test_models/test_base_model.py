@@ -42,5 +42,34 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsNotNone(BaseModel.save.__doc__)
         self.assertIsNotNone(BaseModel.to_dict.__doc__)
 
+    def test_save(self):
+        """
+        Migoh no pleocuple
+        """
+        testinstance = BaseModel()
+        testinstance.save()
+        self.assertNotEqual(testinstance.created_at, testinstance.updated_at)
+        self.assertIsInstance(testinstance.updated_at, datetime,
+                              "updated_at is not instance of datetime.datetime")
+
+    def test_to_dict(self):
+        """
+        checks if to_dict creates a dictionary
+        """
+        testinstance = BaseModel()
+        self.assertIsInstance(testinstance.to_dict(), dict,
+                              "to_dict methos doesnt returns dict obj")
+
+    def test_str(self):
+        """
+        check if str complies to format
+        """
+        testinstance = BaseModel()
+        a, b = testinstance.__class__.__name__, testinstance.id,
+        c = testinstance.__dict__
+        self.assertEqual("[{}] ({}) {}".format(a, b, c),
+                         testinstance.__str__())
+
+
 if __name__ == "__main__":
     unittest.main()
