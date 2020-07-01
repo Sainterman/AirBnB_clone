@@ -13,6 +13,7 @@ class TestBaseModel(unittest.TestCase):
     """ Test case for BaseModel, include
         style and id.
     """
+
     def test_pep8style(self):
         """ verify style pep8
         """
@@ -28,11 +29,13 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsInstance(testinstance.id, str, "id is not a string")
 
     def test_created_at(self):
+        """Verify if is instance"""
         testinstance = BaseModel()
         self.assertIsInstance(testinstance.created_at, datetime,
                               "create_at is not instance of datetime.datetime")
 
     def test_str(self):
+        """Verifies number"""
         testinstance = BaseModel()
         testinstance.name = "Holberton"
         testinstance.my_number = 89
@@ -47,3 +50,4 @@ class TestBaseModel(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
