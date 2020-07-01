@@ -34,12 +34,6 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsInstance(testinstance.created_at, datetime,
                               "create_at is not instance of datetime.datetime")
 
-    def test_str(self):
-        """Verifies number"""
-        testinstance = BaseModel()
-        testinstance.name = "Holberton"
-        testinstance.my_number = 89
-
     def test_docstring(self):
         """test docstring in the file"""
         self.assertIsNotNone(BaseModel.__doc__)
