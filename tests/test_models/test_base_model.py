@@ -54,7 +54,7 @@ class TestBaseModel(unittest.TestCase):
         testinstance.save()
         self.assertNotEqual(testinstance.created_at, testinstance.updated_at)
         self.assertIsInstance(testinstance.updated_at, datetime,
-                              "updated_at is not instance of datetime.datetime")
+                              "updated_at not instance of datetime.datetime")
 
     def test_to_dict(self):
         """
@@ -75,11 +75,11 @@ class TestBaseModel(unittest.TestCase):
                          testinstance.__str__())
 
     def test_instance(self):
-       """
-       test imports in base model class
-       """
-       testinstance = BaseModel()
-       self.assertIsInstance(testinstance, BaseModel)
+        """
+        test imports in base model class
+        """
+        testinstance = BaseModel()
+        self.assertIsInstance(testinstance, BaseModel)
 
 
 if __name__ == "__main__":
