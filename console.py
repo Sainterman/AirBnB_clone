@@ -28,16 +28,13 @@ class HBNBCommand(cmd.Cmd):
 
     def __init__(self):
         cmd.Cmd.__init__(self)
-        self.prompt = '(hbnb) '
+        self.prompt = "(hbnb) "
 
     def do_help(self, arg):
         """
         default help
         """
-        if arg == 'quit':
-            print("Quit command to exit the program")
-        else:
-            cmd.Cmd.do_help(self, arg)
+        cmd.Cmd.do_help(self, arg)
 
     def do_quit(self, arg):
         """
@@ -111,7 +108,7 @@ class HBNBCommand(cmd.Cmd):
         elif args[0] not in HBNBCommand.clases:
             print("{}".format(self.msgs_error[2]))
         elif len(args) < 2:
-            print("{}".format(self.msgs_error[2]))
+            print("{}".format(self.msgs_error[3]))
         else:
             date = models.storage.all()
             key = "{}.{}".format(args[0], args[1])
@@ -120,7 +117,7 @@ class HBNBCommand(cmd.Cmd):
                 storage.FileStorage.__objects = date
                 storage.save()
                 return
-            print("{}".format(self.msgs_error[3]))
+            print("{}".format(self.msgs_error[4]))
 
     def help_all(self):
         print("Prints all string representation of all instances")
@@ -158,20 +155,20 @@ class HBNBCommand(cmd.Cmd):
         elif args[0] not in HBNBCommand.clases:
             print("{}".format(self.msgs_error[2]))
         elif len(args) < 2:
-            print("{}".format(self.msgs_error[2]))
+            print("{}".format(self.msgs_error[3]))
         else:
             key = "{}.{}".format(args[0], args[1])
             if key in date:
                 if len(args) < 3:
-                    print("{}".format(self.msgs_error[4]))
-                elif len(args) < 4:
                     print("{}".format(self.msgs_error[5]))
+                elif len(args) < 4:
+                    print("{}".format(self.msgs_error[6]))
                 else:
                     obj = date[key]
                     setattr(obj, args[2], args[3])
                     obj.save()
             else:
-                print("{}".format(self.msgs_error[3]))
+                print("{}".format(self.msgs_error[4]))
 
     def Empty_line(self):
         """ Line empty
