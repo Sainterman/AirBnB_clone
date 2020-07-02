@@ -127,7 +127,7 @@ class HBNBCommand(cmd.Cmd):
             instances based or not on the class name.
         """
         date = models.storage.all()
-        if line == "":
+        if line is "":
             for instance_key, instance_obj in date.items():
                 print(instance_obj)
         else:
