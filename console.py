@@ -35,7 +35,7 @@ class HBNBCommand(cmd.Cmd):
         default help
         """
         if arg == 'quit':
-            print("quit command to exit the program")
+            print("Quit command to exit the program")
         else:
             cmd.Cmd.do_help(self, arg)
 
@@ -57,6 +57,9 @@ class HBNBCommand(cmd.Cmd):
     def help_help(self):
         print("type help <command>")
 
+    def help_create(self):
+        print("Creates a new instance of BaseModel, saves in a JSON file")
+
     def do_create(self, line):
         """
         Create a new instance of BaseModel
@@ -72,17 +75,20 @@ class HBNBCommand(cmd.Cmd):
             models.storage.save()
             print(new.id)
 
+    def help_show(self):
+        print("Prints the string representation of an instance based")
+
     def do_show(self, line):
         """ Prints the string representation of an
             instance based on the class name and id.
         """
         args = line.split()
         if line == "":
-            print("{}".format(self.msgs_error[0]))
-        elif args[0] not in HBNBCommand.clases:
             print("{}".format(self.msgs_error[1]))
-        elif len(args) < 2:
+        elif args[0] not in HBNBCommand.clases:
             print("{}".format(self.msgs_error[2]))
+        elif len(args) < 2:
+            print("{}".format(self.msgs_error[3]))
         else:
             date = models.storage.all()
             key = "{}.{}".format(args[0], args[1])
@@ -90,7 +96,10 @@ class HBNBCommand(cmd.Cmd):
                 obj = date[key]
                 print(obj)
             except KeyError:
-                print("{}".format(self.msgs_error[3]))
+                print("{}".format(self.msgs_error[4]))
+
+    def help_destroy(self):
+        print("Deletes an instance based on the class name and id")
 
     def do_destroy(self, line):
         """ Deletes an instance based on the class name
@@ -98,9 +107,9 @@ class HBNBCommand(cmd.Cmd):
         """
         args = line.split()
         if line == "":
-            print("{}".format(self.msgs_error[0]))
-        elif args[0] not in HBNBCommand.clases:
             print("{}".format(self.msgs_error[1]))
+        elif args[0] not in HBNBCommand.clases:
+            print("{}".format(self.msgs_error[2]))
         elif len(args) < 2:
             print("{}".format(self.msgs_error[2]))
         else:
@@ -113,6 +122,9 @@ class HBNBCommand(cmd.Cmd):
                 return
             print("{}".format(self.msgs_error[3]))
 
+    def help_all(self):
+        print("Prints all string representation of all instances")
+
     def do_all(self, line=""):
         """ Prints all string representation of all
             instances based or not on the class name.
@@ -124,12 +136,15 @@ class HBNBCommand(cmd.Cmd):
         else:
             args = line.split()
             if args[0] not in HBNBCommand.clases:
-                print("{}".format(self.msgs_error[1]))
+                print("{}".format(self.msgs_error[2]))
             else:
                 for instance_key, instance_obj in date.items():
                     obj = instance_obj.to_dict()
                     if obj["__class__"] == args[0]:
                         print(instance_obj)
+
+    def help_update(self):
+        print("Updates an instance based on the class name and id")
 
     def do_update(self, line=""):
         """ Updates an instance based on the class name
@@ -139,9 +154,9 @@ class HBNBCommand(cmd.Cmd):
         date = models.storage.all()
         args = line.split()
         if not line:
-            print("{}".format(self.msgs_error[0]))
-        elif args[0] not in HBNBCommand.clases:
             print("{}".format(self.msgs_error[1]))
+        elif args[0] not in HBNBCommand.clases:
+            print("{}".format(self.msgs_error[2]))
         elif len(args) < 2:
             print("{}".format(self.msgs_error[2]))
         else:
@@ -154,6 +169,7 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     obj = date[key]
                     setattr(obj, args[2], args[3])
+                    obj.save()
             else:
                 print("{}".format(self.msgs_error[3]))
 
