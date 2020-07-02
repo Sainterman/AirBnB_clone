@@ -80,6 +80,7 @@ class HBNBCommand(cmd.Cmd):
             new.save()
             print(new.id)
             return
+
     def help_show(self):
         print("Prints the string representation of an instance based")
 
@@ -107,7 +108,9 @@ class HBNBCommand(cmd.Cmd):
             except KeyError:
                 print("{}".format(self.msgs_error[4]))
                 return
+
     def help_destroy(self):
+        """something"""
         print("Deletes an instance based on the class name and id")
 
     def do_destroy(self, line):
@@ -134,6 +137,7 @@ class HBNBCommand(cmd.Cmd):
                 return
             print("{}".format(self.msgs_error[4]))
             return
+
     def help_all(self):
         print("Prints all string representation of all instances")
 
@@ -192,6 +196,7 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("{}".format(self.msgs_error[4]))
                 return
+
     def emptyline(self):
         """ Line empty
         """
