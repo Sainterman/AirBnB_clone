@@ -31,9 +31,10 @@ class HBNBCommand(cmd.Cmd):
         5: "** value missing **"
     }
 
-    def __init__(self):
-        cmd.Cmd.__init__(self)
-        self.prompt = "(hbnb) "
+    if sys.stdin.isatty():
+        prompt = '(hbnb) '
+    else:
+        prompt = '(hbnb)' + '\n'
 
     def do_help(self, arg):
         """
