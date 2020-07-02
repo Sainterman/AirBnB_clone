@@ -173,6 +173,10 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("{}".format(self.msgs_error[3]))
 
+    def Empty_line(self):
+        """ Line empty
+        """
+        pass
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
