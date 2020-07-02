@@ -12,8 +12,8 @@ from models.user import User
 
 
 class HBNBCommand(cmd.Cmd):
-    """
-
+    """ Console a program called console.py that contains
+        the entry point of the command interpreter.
     """
     clases = ["BaseModel", "User", "Amenity", "Place",
               "City", "State", "Review"]
