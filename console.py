@@ -36,17 +36,17 @@ class HBNBCommand(cmd.Cmd):
         """
         cmd.Cmd.do_help(self, arg)
 
-    def do_quit(self, arg):
+    def do_quit(self, line):
         """
         Exit CLI
         """
-        sys.exit(1)
+        return True
 
-    def do_EOF(self, arg):
+    def do_EOF(self, line):
         """
         handle EOF
         """
-        sys.exit(1)
+        return True
 
     def help_EOF(self):
         print("Hit Ctrl-D to exit, means EOF")
