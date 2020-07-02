@@ -71,13 +71,15 @@ class HBNBCommand(cmd.Cmd):
         args = line.split()
         if len(args) != 1:
             print("{}".format(self.msgs_error[1]))
+            return
         elif args[0] not in HBNBCommand.clases:
             print("{}".format(self.msgs_error[2]))
+            return
         else:
             new = eval(args[0]+'()')
             new.save()
             print(new.id)
-
+            return
     def help_show(self):
         print("Prints the string representation of an instance based")
 
@@ -88,19 +90,23 @@ class HBNBCommand(cmd.Cmd):
         args = line.split()
         if line == "":
             print("{}".format(self.msgs_error[1]))
+            return
         elif args[0] not in HBNBCommand.clases:
             print("{}".format(self.msgs_error[2]))
+            return
         elif len(args) < 2:
             print("{}".format(self.msgs_error[3]))
+            return
         else:
             date = models.storage.all()
             key = "{}.{}".format(args[0], args[1])
             try:
                 obj = date[key]
                 print(obj)
+                return
             except KeyError:
                 print("{}".format(self.msgs_error[4]))
-
+                return
     def help_destroy(self):
         print("Deletes an instance based on the class name and id")
 
@@ -111,10 +117,13 @@ class HBNBCommand(cmd.Cmd):
         args = line.split()
         if line == "":
             print("{}".format(self.msgs_error[1]))
+            return
         elif args[0] not in HBNBCommand.clases:
             print("{}".format(self.msgs_error[2]))
+            return
         elif len(args) < 2:
             print("{}".format(self.msgs_error[3]))
+            return
         else:
             date = models.storage.all()
             key = "{}.{}".format(args[0], args[1])
@@ -124,7 +133,7 @@ class HBNBCommand(cmd.Cmd):
                 storage.save()
                 return
             print("{}".format(self.msgs_error[4]))
-
+            return
     def help_all(self):
         print("Prints all string representation of all instances")
 
@@ -136,6 +145,7 @@ class HBNBCommand(cmd.Cmd):
         if line is "":
             for instance_key, instance_obj in date.items():
                 print(instance_obj)
+            return
         else:
             args = line.split()
             if args[0] not in HBNBCommand.clases:
@@ -145,6 +155,7 @@ class HBNBCommand(cmd.Cmd):
                     obj = instance_obj.to_dict()
                     if obj["__class__"] == args[0]:
                         print(instance_obj)
+                return
 
     def help_update(self):
         print("Updates an instance based on the class name and id")
@@ -158,24 +169,29 @@ class HBNBCommand(cmd.Cmd):
         args = line.split()
         if not line:
             print("{}".format(self.msgs_error[1]))
+            return
         elif args[0] not in HBNBCommand.clases:
             print("{}".format(self.msgs_error[2]))
+            return
         elif len(args) < 2:
             print("{}".format(self.msgs_error[3]))
+            return
         else:
             key = "{}.{}".format(args[0], args[1])
             if key in date:
                 if len(args) < 3:
                     print("{}".format(self.msgs_error[5]))
+                    return
                 elif len(args) < 4:
                     print("{}".format(self.msgs_error[6]))
+                    return
                 else:
                     obj = date[key]
                     setattr(obj, args[2], args[3])
                     obj.save()
             else:
                 print("{}".format(self.msgs_error[4]))
-
+                return
     def Empty_line(self):
         """ Line empty
         """
