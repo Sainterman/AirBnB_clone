@@ -69,7 +69,7 @@ class HBNBCommand(cmd.Cmd):
             print("{}".format(self.msgs_error[2]))
         else:
             new = eval(args[0]+'()')
-            models.storage.save()
+            new.save()
             print(new.id)
 
     def help_show(self):
