@@ -192,10 +192,10 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("{}".format(self.msgs_error[4]))
                 return
-    def Empty_line(self):
+    def emptyline(self):
         """ Line empty
         """
-        pass
+        return False
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
