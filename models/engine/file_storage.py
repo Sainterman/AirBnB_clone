@@ -3,10 +3,6 @@
 
 """
 import json
-import models
-from models.base_model import BaseModel
-import importlib
-from os import path
 
 
 class FileStorage:
