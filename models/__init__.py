@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 """
 Create global variable storage whioch handles saving of instances
 """
