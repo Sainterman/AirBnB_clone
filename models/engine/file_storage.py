@@ -33,6 +33,7 @@ class FileStorage:
 
         with open(FileStorage.__file_path, mode="w", encoding="utf-8") as nf:
             json.dump(new_dict, nf)
+        return "OK"
 
     def reload(self):
         """ Deserializes the JSON file to __objects
