@@ -20,7 +20,9 @@ class FileStorage:
         """ Return __objects with obj set as key
         """
         key = "{}.{}".format(obj.__class__.__name__, obj.id)
-        type(self).__objects[key] = obj
+        FileStorage.__objects[key] = obj
+        return "OK"
+
 
     def save(self):
         """ Serializes __objects to the JSON file (path: __file_path)
@@ -32,6 +34,7 @@ class FileStorage:
 
         with open(type(self).__file_path, mode="w", encoding="utf-8") as nf:
             json.dump(new_dict, nf)
+        return "OK"
 
     def reload(self):
         """ Deserializes the JSON file to __objects
