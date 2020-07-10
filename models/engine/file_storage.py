@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-
+aqui williyrex comentando
 """
 import json
 
@@ -14,23 +14,23 @@ class FileStorage:
     def all(self):
         """ Returns the dictionary with objects
         """
-        return FileStorage.__objects
+        return type(self)._objects
 
     def new(self, obj):
         """ Return __objects with obj set as key
         """
         key = "{}.{}".format(obj.__class__.__name__, obj.id)
-        FileStorage.__objects[key] = obj
+        type(self).__objects[key] = obj
 
     def save(self):
         """ Serializes __objects to the JSON file (path: __file_path)
         """
         save_file = self.__file_path
         new_dict = {}
-        for item in FileStorage.__objects.items():
+        for item in type(self).__objects.items():
             new_dict[item[0]] = item[1].to_dict()
 
-        with open(FileStorage.__file_path, mode="w", encoding="utf-8") as nf:
+        with open(type(self).__file_path, mode="w", encoding="utf-8") as nf:
             json.dump(new_dict, nf)
 
     def reload(self):
@@ -41,7 +41,7 @@ class FileStorage:
         """
         Reload = {}
         try:
-            with open(FileStorage.__file_path, mode='r') as f:
+            with open(type(self).__file_path, mode='r') as f:
                 Reload = json.load(f)
                 for key, value in Reload.items():
                     self.__objects[key] = eval(value['__class__'])(**value)
